@@ -33,6 +33,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->username = $request->username;
         $user->password = Hash::make($request->password);
+        $user->tipo=$request->tipo;
         $user->save();
         return $user;
     }
@@ -66,6 +67,7 @@ class UserController extends Controller
         $user->nombre = $request->nombre;
         $user->email = $request->email;
         $user->username = $request->username;
+        $user->tipo=$request->tipo;
         if(isset($request->password)){
             if(!empty($request->password)){
                 $user->password = Hash::make($request->password);

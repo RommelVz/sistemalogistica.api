@@ -21,13 +21,13 @@ class DashboardController extends Controller
     }
     public function VentasMensual()
     {
-        $ventas= Venta::select(
-            DB::raw('sum(total) as total'),
-            DB::raw("DATE_FORMAT(created_at,'%M') as mes"),
-            DB::raw("DATE_FORMAT(created_at,'%Y') as año")
-        )->where('estado',1)
-            ->groupBy('mes','año')
-            ->get();
+        $ventas = Venta::select(
+            DB::raw('SUM(total) as total'),
+            DB::raw("CONCAT(LPAD(DATE_FORMAT(created_at, '%m'), 2, '0'), '-', DATE_FORMAT(created_at, '%b')) as mes"),
+            DB::raw("DATE_FORMAT(created_at, '%Y') as año")
+        )->where('estado', 1)
+        ->groupBy('mes', 'año')
+        ->get();
             return $ventas;
     }
 }
