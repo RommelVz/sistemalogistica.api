@@ -18,7 +18,9 @@ class VentaController extends Controller
      */
     public function index()
     {
-        $venta = Venta::where('estado',1)->get();
+        $venta = Venta::where('estado',1)
+                ->orderBy('created_at', 'desc') 
+                ->get();
         $list = [];
         foreach($venta as $m){
 
